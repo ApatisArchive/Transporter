@@ -19,6 +19,7 @@ class TransportResponse
     /**
      * TransportResponse constructor.
      * @param ResponseInterface|\Exception $response
+     * @throws InvalidArgumentException
      */
     public function __construct($response)
     {

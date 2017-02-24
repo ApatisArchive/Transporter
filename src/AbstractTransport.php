@@ -601,6 +601,7 @@ abstract class AbstractTransport implements TransportInterface
      *
      * @param string|UriInterface $uri
      * @return static
+     * @throws InvalidArgumentException
      */
     public function withUri($uri)
     {
@@ -644,6 +645,7 @@ abstract class AbstractTransport implements TransportInterface
      *                       fallback to default
      *
      * @return static
+     * @throws InvalidArgumentException
      */
     public function withMethod($method)
     {
@@ -689,6 +691,7 @@ abstract class AbstractTransport implements TransportInterface
      * @param string $name      Method
      * @param array  $arguments Argument array
      * @return mixed
+     * @throws InvalidArgumentException
      */
     public static function __callStatic($name, array $arguments)
     {
@@ -737,7 +740,8 @@ abstract class AbstractTransport implements TransportInterface
      *
      * @param string $method
      * @param array  $arguments
-     * @return TransportInterface
+     * @return static
+     * @throws InvalidArgumentException
      */
     public function __call($method, array $arguments)
     {
