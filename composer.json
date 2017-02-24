@@ -1,0 +1,46 @@
+{
+  "name": "apatis/transporter",
+  "description": "HTTP Transport Tools",
+  "type": "library",
+  "license": "MIT",
+  "version": "1.0.0",
+  "keywords": [
+    "http",
+    "curl",
+    "socket",
+    "transport",
+    "scrap"
+  ],
+  "authors": [
+    {
+      "name": "nawa",
+      "email": "nawa@yahoo.com",
+      "role": "developer"
+    },
+    {
+      "name": "pentagonal",
+      "email": "org@pentagonal.org",
+      "role": "developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.6",
+    "apatis/array-storage": "^1",
+    "apatis/exceptions": "^1",
+    "guzzlehttp/guzzle": "~6"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "2.*",
+    "phpunit/phpunit": "^5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Apatis\\Transporter\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Apatis\\Transporter\\Tests\\": "Tests/"
+    }
+  }
+}
