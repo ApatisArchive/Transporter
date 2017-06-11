@@ -305,6 +305,7 @@ abstract class AbstractTransport implements TransportInterface
     {
         return $this->last_response;
     }
+
     /**
      * @param Client $client
      * @return static
@@ -453,7 +454,7 @@ abstract class AbstractTransport implements TransportInterface
         }
 
         if (! $type && (
-                isset($this->configs[self::PARAM_FORM]) || isset($this->configs[self::PARAM_MULTIPART]))
+            isset($this->configs[self::PARAM_FORM]) || isset($this->configs[self::PARAM_MULTIPART]))
         ) {
             $type = isset($object->configs[self::PARAM_FORM])
                 ? self::PARAM_FORM
@@ -510,9 +511,10 @@ abstract class AbstractTransport implements TransportInterface
      */
     public function setParam($name, $value)
     {
-        if (isset($this->configs[$this->currentParamType])) {
+        if (!isset($this->configs[$this->currentParamType])) {
             $this->configs[$this->currentParamType] = [];
         }
+
         $this->configs[$this->currentParamType][$name] = $value;
         if (!$this->inProcessingLoop) {
             return $this->buildConfigClient();
@@ -541,13 +543,15 @@ abstract class AbstractTransport implements TransportInterface
      */
     public function replaceParams(array $params)
     {
-        if (isset($this->configs[$this->currentParamType])) {
+        if (!isset($this->configs[$this->currentParamType])) {
             $this->configs[$this->currentParamType] = [];
         }
+
         $this->inProcessingLoop = true;
         foreach ($params as $key => $paramValue) {
             $this->setParam($key, $paramValue);
         }
+
         $this->inProcessingLoop = false;
 
         return $this->buildConfigClient();
