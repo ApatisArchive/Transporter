@@ -665,8 +665,9 @@ abstract class AbstractTransport implements TransportInterface
             );
         }
 
-        $object->method = $method;
-        return $object->withRequest($object->request);
+        return $object->withRequest(
+            $object->request->withMethod($method)
+        );
     }
 
     /**
