@@ -10,7 +10,7 @@ class TransportUtil
     /**
      * @const string default user agent
      */
-    const DEFAULT_USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:51.0) Gecko/20100101 Firefox/51.0';
+    const DEFAULT_USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:54.0) Gecko/20100101 Firefox/54.0';
 
     /**
      * Get generate User Agent
@@ -23,6 +23,7 @@ class TransportUtil
         if (isset($ua)) {
             return $ua;
         }
+
         $year  = abs(@date('Y'));
         if ($year <= 2017) {
             return $ua = self::DEFAULT_USER_AGENT;
@@ -30,8 +31,10 @@ class TransportUtil
 
         $user_agent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:[version].0) Gecko/20100101 Firefox/[version].0';
         $month      = abs(@date('m'));
-        $version    = 50;
-        $version   += (($year-2017) - (6 % $month === 0 ? 1 : 0));
+        $version    = 51;
+        $currentYear    = ($year-2017);
+        $currentVersion = is_int($month/2) ? $month/2 : abs($month/2 + 0.5);
+        $version   += $currentYear + $currentVersion;
         return $ua = str_replace('[version]', $version, $user_agent);
     }
 }
